@@ -60,6 +60,38 @@ This provider works with [Docker Swarm Mode](https://docs.docker.com/engine/swar
             - traefik.http.services.my-container-service.loadbalancer.server.port=8080
     ```
 
+    Fully working example to deploy in Swarm mode via `docker stack deploy file.yml` .
+    It works without exposing the docker daemon to tcp, but uses the default unix socket instead.
+    It will expose a simple [whoami service](https://github.com/traefik/whoami) on port 80 and the traefik [dashboard](../operations/dashboard.md) on port 8080.
+
+    ```yaml
+    version: "3"
+    services:
+    traefik:
+      image: "traefik:v3.0"
+      command:
+        #- "--log.level=DEBUG"
+        - "--accesslog=true"
+        - "--api.insecure=true"
+        - "--providers.swarm.endpoint=unix:///var/run/docker.sock"
+        - "--entryPoints.web.address=:80"
+      ports:
+        - "80:80"
+        - "8080:8080"
+      volumes:
+        - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      deploy:
+        labels:
+          - "traefik.http.services.dummy.loadbalancer.server.port=0"
+    whoami:
+      image: "traefik/whoami"
+      deploy:
+        labels:
+          - "traefik.enable=true"
+          - "traefik.http.routers.myroute.rule=HostRegexp(`^.+`)"
+          - "traefik.http.services.myservice.loadbalancer.server.port=80"
+    ```
+
 ## Routing Configuration
 
 When using Docker as a [provider](./overview.md),
