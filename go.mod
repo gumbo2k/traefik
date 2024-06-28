@@ -32,6 +32,7 @@ require (
 	github.com/http-wasm/http-wasm-host-go v0.6.0
 	github.com/influxdata/influxdb-client-go/v2 v2.7.0
 	github.com/influxdata/influxdb1-client v0.0.0-20191209144304-8bf82d3c094d
+	github.com/juliens/wasm-goexport v0.0.6
 	github.com/klauspost/compress v1.17.2
 	github.com/kvtools/consul v1.0.2
 	github.com/kvtools/etcdv3 v1.0.2
@@ -53,12 +54,14 @@ require (
 	github.com/rs/zerolog v1.29.0
 	github.com/sirupsen/logrus v1.9.3
 	github.com/spiffe/go-spiffe/v2 v2.1.1
+	github.com/stealthrocket/wasi-go v0.8.0
+	github.com/stealthrocket/wazergo v0.19.1
 	github.com/stretchr/testify v1.9.0
 	github.com/stvp/go-udp-testing v0.0.0-20191102171040-06b61409b154
 	github.com/tailscale/tscert v0.0.0-20230806124524-28a91b69a046
 	github.com/testcontainers/testcontainers-go v0.30.0
 	github.com/testcontainers/testcontainers-go/modules/k3s v0.30.0
-	github.com/tetratelabs/wazero v1.5.0
+	github.com/tetratelabs/wazero v1.7.2
 	github.com/tidwall/gjson v1.17.0
 	github.com/traefik/grpc-web v0.16.0
 	github.com/traefik/paerser v0.2.0
@@ -67,18 +70,18 @@ require (
 	github.com/unrolled/secure v1.0.9
 	github.com/vulcand/oxy/v2 v2.0.0-20230427132221-be5cf38f3c1c
 	github.com/vulcand/predicate v1.2.0
-	go.opentelemetry.io/collector/pdata v1.2.0
+	go.opentelemetry.io/collector/pdata v1.10.0
 	go.opentelemetry.io/contrib/propagators/autoprop v0.52.0
-	go.opentelemetry.io/otel v1.27.0
-	go.opentelemetry.io/otel/exporters/otlp/otlpmetric/otlpmetricgrpc v1.27.0
-	go.opentelemetry.io/otel/exporters/otlp/otlpmetric/otlpmetrichttp v1.27.0
-	go.opentelemetry.io/otel/exporters/otlp/otlptrace v1.27.0
-	go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc v1.27.0
-	go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracehttp v1.27.0
-	go.opentelemetry.io/otel/metric v1.27.0
-	go.opentelemetry.io/otel/sdk v1.27.0
-	go.opentelemetry.io/otel/sdk/metric v1.27.0
-	go.opentelemetry.io/otel/trace v1.27.0
+	go.opentelemetry.io/otel v1.27.1-0.20240624175855-921eb701b175 // For security reason we need to follow semconv v1.26.0 and we can't wait for opentelemetry-go-sdk v1.28.0.
+	go.opentelemetry.io/otel/exporters/otlp/otlpmetric/otlpmetricgrpc v1.27.1-0.20240624175855-921eb701b175 // For security reason we need to follow semconv v1.26.0 and we can't wait for opentelemetry-go-sdk v1.28.0.
+	go.opentelemetry.io/otel/exporters/otlp/otlpmetric/otlpmetrichttp v1.27.1-0.20240624175855-921eb701b175 // For security reason we need to follow semconv v1.26.0 and we can't wait for opentelemetry-go-sdk v1.28.0.
+	go.opentelemetry.io/otel/exporters/otlp/otlptrace v1.27.1-0.20240624175855-921eb701b175 // For security reason we need to follow semconv v1.26.0 and we can't wait for opentelemetry-go-sdk v1.28.0.
+	go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc v1.27.1-0.20240624175855-921eb701b175 // For security reason we need to follow semconv v1.26.0 and we can't wait for opentelemetry-go-sdk v1.28.0.
+	go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracehttp v1.27.1-0.20240624175855-921eb701b175 // For security reason we need to follow semconv v1.26.0 and we can't wait for opentelemetry-go-sdk v1.28.0.
+	go.opentelemetry.io/otel/metric v1.27.1-0.20240624175855-921eb701b175 // For security reason we need to follow semconv v1.26.0 and we can't wait for opentelemetry-go-sdk v1.28.0.
+	go.opentelemetry.io/otel/sdk v1.27.1-0.20240624175855-921eb701b175 // For security reason we need to follow semconv v1.26.0 and we can't wait for opentelemetry-go-sdk v1.28.0.
+	go.opentelemetry.io/otel/sdk/metric v1.27.1-0.20240624175855-921eb701b175 // For security reason we need to follow semconv v1.26.0 and we can't wait for opentelemetry-go-sdk v1.28.0.
+	go.opentelemetry.io/otel/trace v1.27.1-0.20240624175855-921eb701b175 // For security reason we need to follow semconv v1.26.0 and we can't wait for opentelemetry-go-sdk v1.28.0.
 	golang.org/x/exp v0.0.0-20240416160154-fe59bbe5cc7f
 	golang.org/x/mod v0.18.0
 	golang.org/x/net v0.26.0
@@ -96,6 +99,7 @@ require (
 	mvdan.cc/xurls/v2 v2.5.0
 	sigs.k8s.io/controller-runtime v0.18.0
 	sigs.k8s.io/gateway-api v1.1.0
+	sigs.k8s.io/yaml v1.4.0
 )
 
 require (
@@ -176,7 +180,7 @@ require (
 	github.com/go-errors/errors v1.0.1 // indirect
 	github.com/go-jose/go-jose/v4 v4.0.2 // indirect
 	github.com/go-logfmt/logfmt v0.5.1 // indirect
-	github.com/go-logr/logr v1.4.1 // indirect
+	github.com/go-logr/logr v1.4.2 // indirect
 	github.com/go-logr/stdr v1.2.2 // indirect
 	github.com/go-logr/zapr v1.3.0 // indirect
 	github.com/go-ole/go-ole v1.2.6 // indirect
@@ -325,7 +329,7 @@ require (
 	go.opentelemetry.io/contrib/propagators/b3 v1.27.0 // indirect
 	go.opentelemetry.io/contrib/propagators/jaeger v1.27.0 // indirect
 	go.opentelemetry.io/contrib/propagators/ot v1.27.0 // indirect
-	go.opentelemetry.io/proto/otlp v1.2.0 // indirect
+	go.opentelemetry.io/proto/otlp v1.3.1 // indirect
 	go.uber.org/atomic v1.11.0 // indirect
 	go.uber.org/mock v0.4.0 // indirect
 	go.uber.org/multierr v1.11.0 // indirect
@@ -338,9 +342,9 @@ require (
 	golang.org/x/term v0.21.0 // indirect
 	google.golang.org/api v0.172.0 // indirect
 	google.golang.org/genproto v0.0.0-20240227224415-6ceb2ff114de // indirect
-	google.golang.org/genproto/googleapis/api v0.0.0-20240520151616-dc85e6b867a5 // indirect
-	google.golang.org/genproto/googleapis/rpc v0.0.0-20240515191416-fc5f0ca64291 // indirect
-	google.golang.org/protobuf v1.34.1 // indirect
+	google.golang.org/genproto/googleapis/api v0.0.0-20240624140628-dc46fd24d27d // indirect
+	google.golang.org/genproto/googleapis/rpc v0.0.0-20240624140628-dc46fd24d27d // indirect
+	google.golang.org/protobuf v1.34.2 // indirect
 	gopkg.in/h2non/gock.v1 v1.0.16 // indirect
 	gopkg.in/inf.v0 v0.9.1 // indirect
 	gopkg.in/ini.v1 v1.67.0 // indirect
@@ -352,7 +356,6 @@ require (
 	nhooyr.io/websocket v1.8.7 // indirect
 	sigs.k8s.io/json v0.0.0-20221116044647-bc3834ca7abd // indirect
 	sigs.k8s.io/structured-merge-diff/v4 v4.4.1 // indirect
-	sigs.k8s.io/yaml v1.4.0 // indirect
 )
 
 // Containous forks
@@ -371,3 +374,5 @@ exclude github.com/tencentcloud/tencentcloud-sdk-go v3.0.83+incompatible
 
 // https://github.com/docker/compose/blob/v2.19.0/go.mod#L12
 replace github.com/cucumber/godog => github.com/cucumber/godog v0.13.0
+
+replace github.com/http-wasm/http-wasm-host-go => github.com/traefik/http-wasm-host-go v0.0.0-20240618100324-3c53dcaa1a70
